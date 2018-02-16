@@ -10,13 +10,13 @@ cv.readImage(IMAGE_PATH, (err, img) => {
     throw new Error(err);
   }
 
-  img.detectObject(CLASSIFIER, {}, function(err, faces) {
+  img.detectObject(CLASSIFIER, {}, function(err, objects) {
     if (err)
       throw err;
 
-    for (var i = 0; i < faces.length; i++) {
-      var face = faces[i];
-      img.ellipse(face.x + face.width / 2, face.y + face.height / 2, face.width / 2, face.height / 2, [255, 255, 0], 3);
+    for (var i = 0; i < objects.length; i++) {
+      var object = objects[i];
+      img.ellipse(object.x + object.width / 2, object.y + object.height / 2, object.width / 2, object.height / 2, [255, 255, 0], 3);
     }
 
     img.save(OUT_PATH);
